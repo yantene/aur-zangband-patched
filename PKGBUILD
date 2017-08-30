@@ -10,13 +10,17 @@ license=('custom')
 depends=('ncurses' 'lesstif')
 makedepends=('ncurses')
 source=(http://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver.tar.gz \
+        h-type.h.patch \
         LICENSE)
 install=$pkgname.install
 md5sums=('8ea43c1b13c54157558bfd0ad3cee295'
+         '420935cbc811afaddfc789d3c3b9f9e0'
          '74183fd3880704df6ab64e4c2887b852')
 
 prepare(){
   cd "${srcdir}"/$pkgname/src/
+
+  patch < "${srcdir}"/"h-type.h.patch"
 
   cp "makefile.std" "makefile"
   cp "z-config.h" "z-config.h.bak"
